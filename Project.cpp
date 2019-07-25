@@ -34,6 +34,8 @@ struct Student
 	string location;
 	string laundry;
 	bool chosen;
+	Student* prev;
+	Student* next;
 };
 
 struct ApartmentList
@@ -50,6 +52,18 @@ struct ApartmentList
 	void removeFront();
 	bool isEmpty();
 
+};
+
+struct StudentList
+{
+	StudentList();
+	~StudentList();
+
+	Student* header;
+	Student* trailer;
+
+	void insert(const Student& newstudent);
+	void add(Student* v, int id, int rent, string location, int br, string lau);
 };
 
 void insertlist() {
@@ -133,7 +147,7 @@ int main(int argc, char *argv[])
 		istringstream ss(line);
 
 		int id, rent, bedrooms;
-		string location, laundry;
+		string location, laundry, name;
 
 		ss >> id >> name >>location >> bedrooms >> laundry >> rent;
 
@@ -166,10 +180,10 @@ int main(int argc, char *argv[])
 
 	Apartment * P = new Apartment;
 	Student * q = new Student;
-	for ( Apartment* p = Apartmentlist->header; p != NULL; p= p->next){
-		for (Student* q = Studentlist->header; q != NULL; q = q->next){
+	for ( Apartment* p = ApartmentList->header; p != NULL; p= p->next){
+		for (Student* q = StudentList->header; q != NULL; q = q->next){
 
-			if((p->location == q->location || q-> location == "Any")&&(p->bedrooms == q -> bedrooms || q-> bedrooms =="Any") && p->rent <= q->rent &&(q->laundry == p->laundry || p->laundry == "Any")&&p->chosen == false && q-> chosen == false)
+			if((p->location == q->location || q-> location == "Any")&&(p->bedrooms == q -> bedrooms || q-> bedrooms == "Any") && p->rent <= q->rent &&(q->laundry == p->laundry || p->laundry == "Any")&&p->chosen == false && q-> chosen == false)
 			{
 				p->chosen = true;
 				p->resident = q->name;
@@ -188,8 +202,8 @@ int main(int argc, char *argv[])
 
 	  }
 	  */
-	for ( Apartment* a = Apartmentlist->header; a != NULL; a= a->next){
-		if (a->Chosen=true)
+	for ( Apartment* a = ApartmentList->header; a != NULL; a= a->next){
+		if (a->chosen=true)
 		{
 			cout<<"The apartment "<<a->id<< " is assigned to "<< a->resident<<"("<<a->student_id<<")."<<endl;
 
