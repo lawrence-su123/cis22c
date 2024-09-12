@@ -19,6 +19,38 @@
 //#include "linkedlist.h"
 using namespace std;
 
+class Node{
+	int data;
+    Node next;
+};
+
+class  WaitingStudentQueue{
+	private Node front;
+    private Node rear;
+
+   public WaitingStudentQueue(){
+        front = null;
+        rear = null;
+    }
+
+   public WaitingStudentQueue clone(){
+
+       if(front == null){
+            new Queue();
+        }
+
+       Node newFront = new Node(front.data);
+        Node last = front;
+        Node curr = front.next;
+
+       while(curr != null){
+            last.next = new Node(curr.data);
+            last = last.next;
+            curr = curr.next;
+        }
+    }
+
+};
 
 // creating structure for the linked list, it can be imprted from a .h file later
 struct Apartment
@@ -50,8 +82,6 @@ void insertlist() {
 
 
 //void 
-
-
 
 int main(int argc, char *argv[])
 {
