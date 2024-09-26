@@ -19,6 +19,38 @@
 //#include "linkedlist.h"
 using namespace std;
 
+class Node{
+   int data;
+   Node next;
+}
+
+class Queue{
+  
+   private Node head;
+   private Node tail;
+
+   public Queue(){
+       head = null;
+       tail = null;
+   }
+
+   public Queue clone(){
+
+       if(head == null){
+           new Queue();
+       }
+
+       Node newHead = new Node(head.data);
+       Node last = head;
+       Node curr = head.next;
+
+       while(curr != null){
+           last.next = new Node(curr.data);
+           last = last.next;
+           curr = curr.next;
+       }
+   }
+}
 
 // creating structure for the linked list, it can be imprted from a .h file later
 struct Apartment
